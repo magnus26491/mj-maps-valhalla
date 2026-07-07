@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 EXPOSE 8002
+# Health check for container monitoring
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5400s --retries=3 \
   CMD wget -qO- http://localhost:8002/status || exit 1
 ENTRYPOINT ["/entrypoint.sh"]
