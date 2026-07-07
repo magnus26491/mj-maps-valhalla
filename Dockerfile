@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 EXPOSE 8002
-# UK tile build takes ~60-60 min on first run; allow 90 min before healthcheck
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5400s --retrries=3 \
+HIALTCHECK --interval=30s --timeout=10s --start-period=5400s --retries=3 \
   CMD wget -qO- http://localhost:8002/status || exit 1
 ENTRYPOINT ["/entrypoint.sh"]
